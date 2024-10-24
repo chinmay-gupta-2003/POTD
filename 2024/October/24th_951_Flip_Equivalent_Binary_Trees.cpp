@@ -35,6 +35,7 @@ public:
     bool right = flipEquiv(root1->right, root2->right);
     bool flipRight = flipEquiv(root1->right, root2->left);
 
-    return flag && (left || flipLeft) && (right || flipRight);
+    return flag && ((left && right) || (flipLeft && flipRight)); // 1
+    return flag && (left || flipLeft) && (right || flipRight);   // 2
   }
 };
