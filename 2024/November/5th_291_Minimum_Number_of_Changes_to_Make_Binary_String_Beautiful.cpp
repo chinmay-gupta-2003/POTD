@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+  int minChanges(string s)
+  {
+    int n = s.length(), cnt = 0;
+
+    for (int i = 0; i < n - 1; i = i + 2)
+    {
+      if (s[i] != s[i + 1])
+        cnt++;
+    }
+
+    return cnt;
+  }
+};
+
+int main()
+{
+  Solution sol;
+  string s = "1001";
+
+  cout << sol.minChanges(s);
+
+  return 0;
+}
