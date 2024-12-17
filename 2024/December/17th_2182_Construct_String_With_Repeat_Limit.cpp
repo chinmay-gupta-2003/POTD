@@ -44,6 +44,51 @@ public:
 
     return result;
   }
+
+  string repeatLimitedStringApproach2(string s, int repeatLimit)
+  {
+    vector<int> freqArray(26, 0);
+
+    for (auto it : s)
+      freqArray[it - 'a']++;
+
+    priority_queue<char> pq;
+
+    for (int i = 0; i < 26; i++)
+    {
+      if (freqArray[i])
+        pq.push(i + 'a');
+    }
+
+    string result = "";
+
+    while (!pq.empty())
+    {
+      char top = pq.top();
+      pq.pop();
+
+      int minFrequency = min(freqArray[top - 'a'], repeatLimit);
+
+      result += string(minFrequency, top);
+      freqArray[top - 'a'] -= minFrequency;
+
+      if (freqArray[top - 'a'] > 0 && !pq.empty())
+      {
+
+        char nextChar = pq.top();
+
+        result += nextChar;
+        freqArray[nextChar - 'a']--;
+
+        if (freqArray[nextChar - 'a'] == 0)
+          pq.pop();
+
+        pq.push(top);
+      }
+    }
+
+    return result;
+  }
 };
 
 int main()
@@ -53,6 +98,7 @@ int main()
   int repeatingLimit = 3;
 
   cout << sol.repeatLimitedStringApproach1(s, repeatingLimit) << endl;
+  cout << sol.repeatLimitedStringApproach2(s, repeatingLimit) << endl;
 
   return 0;
 }
