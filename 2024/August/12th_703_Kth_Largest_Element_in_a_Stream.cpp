@@ -17,8 +17,7 @@ public:
 
   int add(int val)
   {
-    if (pq.size() < k || pq.top() < val)
-      pq.push(val);
+    pq.push(val);
 
     if (pq.size() > k)
       pq.pop();
