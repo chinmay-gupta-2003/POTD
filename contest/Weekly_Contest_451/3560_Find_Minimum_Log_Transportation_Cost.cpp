@@ -26,6 +26,17 @@ public:
   {
     return getLogCost(n, k) + getLogCost(m, k);
   }
+
+  long long minCuttingCostOptimal(int n, int m, int k)
+  {
+    if (n < m)
+      swap(n, m);
+
+    if (n <= k)
+      return 0;
+
+    return 1LL * k * (n - k);
+  }
 };
 
 int main()
@@ -33,7 +44,8 @@ int main()
   Solution sol;
   int n = 49898, m = 109372, k = 62703;
 
-  cout << sol.minCuttingCostBrute(n, m, k);
+  cout << sol.minCuttingCostBrute(n, m, k) << endl;
+  cout << sol.minCuttingCostOptimal(n, m, k) << endl;
 
   return 0;
 }
